@@ -15,6 +15,7 @@ $app->get('/', function () use($app)
     ));
 })
     ->bind('homepage');
+$app->mount('/blog', new Lcp\BlogControllerProvider());
 
 $app->error(function (\Exception $e, Request $request, $code) use($app)
 {

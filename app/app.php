@@ -16,5 +16,5 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
 
     return $twig;
 });
-
+$app->register(new Lcp\BlogControllerProvider());
 return $app;
