@@ -1,0 +1,31 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	new file:   .buildpath
+#	new file:   .project
+#	new file:   .settings/org.eclipse.php.core.prefs
+#	new file:   .settings/org.eclipse.php.debug.core.Debug_Process_Preferences.prefs
+#	new file:   .settings/org.eclipse.wst.validation.prefs
+#	new file:   README.md
+#	new file:   app/app.php
+#	new file:   app/config/dev.php
+#	new file:   app/config/prod.php
+#	new file:   composer.json
+#	new file:   composer.lock
+#	new file:   index.php
+#	new file:   src/controller/controller.php
+#	new file:   src/views/base.html.twig
+#	new file:   src/views/errors/404.html.twig
+#	new file:   src/views/errors/4xx.html.twig
+#	new file:   src/views/errors/500.html.twig
+#	new file:   src/views/errors/5xx.html.twig
+#	new file:   src/views/errors/default.html.twig
+#	new file:   src/views/home/hello.html.twig
+#
+# Untracked files:
+#	vendor/
+#	web/
+#
+
