@@ -5,7 +5,12 @@ use Silex\Provider\AssetServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\HttpFragmentServiceProvider;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @var $app \Silex\Application
+ */
 $app = new Application();
 $app->register(new ServiceControllerServiceProvider());
 $app->register(new AssetServiceProvider());
@@ -17,4 +22,29 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     return $twig;
 });
 $app->register(new Lcp\BlogControllerProvider());
+
+// Before Application Middleware
+$app->before(function(Request $request, Application $app){
+
+});
+// Before Application Middleware(early), Application::EARLY_EVENT = 512
+$app->before(function(Request $request, Application $app){
+
+}, Application::EARLY_EVENT);
+// Middleware Priority, Application::LATE_EVENT = -512
+$app->before(function(Request $request, Application $app){
+
+}, Application::LATE_EVENT);
+// Middleware Priority, number
+$app->before(function(Request $request, Application $app){
+
+}, 32);
+// After Application Middleware
+$app->after(function(Request $request, Response $response){
+
+});
+// Finish Application Middleware
+$app->finish(function(Request $request, Response $reponse){
+
+});
 return $app;
