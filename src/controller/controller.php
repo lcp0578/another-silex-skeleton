@@ -4,6 +4,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Silex\Application;
 
 // Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -16,6 +17,25 @@ $app->get('/', function () use($app)
 })
     ->bind('homepage');
 $app->mount('/blog', new Lcp\BlogControllerProvider());
+
+//Before Router Middleware
+$swBefore = function(Request $request, Application $app){
+    //echo 'before';
+    if(true){
+        return new RedirectResponse('/index_dev.php/login');
+    }
+};
+
+//After Router Middleware
+$swAfter = function(Request $reuqest, Response $response, Application $app){
+    echo 'after';
+};
+
+$app->get('/somewhere', function(){
+    return new JsonResponse(['Router Middleware']);
+})
+->before($swBefore)
+->after($swAfter);
 
 $app->error(function (\Exception $e, Request $request, $code) use($app)
 {
