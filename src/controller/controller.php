@@ -18,6 +18,8 @@ $app->get('/', function () use($app)
     ->bind('homepage');
 $app->mount('/blog', new Lcp\BlogControllerProvider());
 
+// organizing controller
+$blog = $app['controllers_factory'];
 //Before Router Middleware
 $swBefore = function(Request $request, Application $app){
     //echo 'before';
