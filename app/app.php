@@ -7,6 +7,7 @@ use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\HttpFragmentServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * @var $app \Silex\Application
@@ -46,5 +47,11 @@ $app->after(function(Request $request, Response $response){
 // Finish Application Middleware
 $app->finish(function(Request $request, Response $reponse){
 
+});
+//  Short-circuiting the Controller
+$app->before(function(Request $request){
+    if(strpos($request->getBaseUrl(), 'profile') !== false){
+        return new RedirectResponse('/login');
+    }
 });
 return $app;
