@@ -20,6 +20,12 @@ $app->mount('/blog', new Lcp\BlogControllerProvider());
 
 // organizing controller
 $blog = $app['controllers_factory'];
+$blog->get('/', function (){
+    return 'blog homepage';
+});
+
+$app->mount('/blog', $blog);
+
 //Before Router Middleware
 $swBefore = function(Request $request, Application $app){
     //echo 'before';
