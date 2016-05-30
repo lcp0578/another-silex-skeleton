@@ -24,8 +24,13 @@ $blog->get('/', function (){
     return 'blog homepage';
 });
 
-$app->mount('/blog', $blog);
+$forum = $app['controllers_factory'];
+$blog->get('/', function(){
+    return 'forum homepage';
+});
 
+$app->mount('/blog', $blog);
+$app->mount('/forum', $forum);
 //Before Router Middleware
 $swBefore = function(Request $request, Application $app){
     //echo 'before';
