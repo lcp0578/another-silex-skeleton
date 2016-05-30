@@ -58,9 +58,9 @@ $app->get('/user/{id}', function($id){
 });
 
 $userProvider = function($userid){
-    return new UserProvider($userid);
+    return new UserControllerProvider($userid);
 };
-$app->get('/profile/{userid}', function (UserProvider $user){
+$app->get('/profile/{userid}', function (UserControllerProvider $user){
     $id = $user->getId();
     return new JsonResponse(array(
         'profile' => $id

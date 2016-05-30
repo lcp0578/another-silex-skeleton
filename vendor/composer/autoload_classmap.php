@@ -13,7 +13,7 @@ return array(
     'Error' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/Error.php',
     'IntlDateFormatter' => $vendorDir . '/symfony/intl/Resources/stubs/IntlDateFormatter.php',
     'Lcp\\BlogControllerProvider' => $baseDir . '/src/controller/Lcp/BlogControllerProvider.php',
-    'Lcp\\UserProvider' => $baseDir . '/src/controller/Lcp/UserControllerProvider.php',
+    'Lcp\\UserControllerProvider' => $baseDir . '/src/controller/Lcp/UserControllerProvider.php',
     'Locale' => $vendorDir . '/symfony/intl/Resources/stubs/Locale.php',
     'NumberFormatter' => $vendorDir . '/symfony/intl/Resources/stubs/NumberFormatter.php',
     'ParseError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
