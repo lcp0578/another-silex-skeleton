@@ -49,6 +49,12 @@ $app->match('/another_match', function(){
         'msg' => 'another match GET|POST'
     ));
 })->method('GET|POST');
+// Router Variable Converters
+$app->get('/user/{id}', function($id){
+    return new JsonResponse(array('id' => $id));
+})->convert('id', function($id){
+    return $id*10;
+});
 // $app->mount('/blog', new BlogControllerProvider());
 
 // organizing controller
