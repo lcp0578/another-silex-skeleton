@@ -5,7 +5,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Silex\Application;
-// use Lcp\BlogControllerProvider;
+use Lcp\BlogControllerProvider;
+use Lcp\UserProvider;
 
 // Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -55,7 +56,18 @@ $app->get('/user/{id}', function($id){
 })->convert('id', function($id){
     return $id*10;
 });
-// $app->mount('/blog', new BlogControllerProvider());
+
+$userProvider = function($userid){
+    return new UserProvider($userid);
+};
+$app->get('/profile/{userid}', function (UserProvider $user){
+    $id = $user->getId();
+    return new JsonResponse(array(
+        'profile' => $id
+    ));
+})->convert('userid', $userProvider);
+
+$app->mount('/blog', new BlogControllerProvider());
 
 // organizing controller
 $blog = $app['controllers_factory'];

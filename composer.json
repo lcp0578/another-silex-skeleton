@@ -18,5 +18,10 @@
         "symfony/twig-bridge": "~2.8|3.0.*",
         "symfony/validator": "~2.8|3.0.*",
         "symfony/http-kernel": "^2.8"
+    },
+    "autoload": {
+        "classmap": [
+            "src/controller"
+        ]
     }
 }

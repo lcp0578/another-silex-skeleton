@@ -4,7 +4,7 @@
   *
   * @package: packname
   * @author: lcp0578@gmail.com
-  * @date: 2016年5月25日 上午12:28:29
+  * @date: 2016-05-25 12:28:29
   * @version: 0.0.1
   * @copyright: http://lcpeng.cn
   */
