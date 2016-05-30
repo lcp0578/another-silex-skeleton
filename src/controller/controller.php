@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Silex\Application;
+// use Lcp\BlogControllerProvider;
 
 // Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -16,7 +17,39 @@ $app->get('/', function () use($app)
     ));
 })
     ->bind('homepage');
-$app->mount('/blog', new Lcp\BlogControllerProvider());
+// other methods
+$app->put('/blog/{id}', function($id){
+    return new JsonResponse(array(
+        'msg' => 'put blog ' . $id
+    ));
+});
+$app->delete('/blog/{id}', function($id){
+    return new JsonResponse(array(
+        'msg' => 'delete blog ' . $id
+    ));
+});
+$app->patch('/blog/{id}', function($id){
+    return new JsonResponse(array(
+        'msg' => 'patch blog ' . $id
+    ));
+});
+$app->match('/match', function(Request $request){
+    $method = $request->getMethod();
+    return new JsonResponse(array(
+        'msg' => 'match ' . $method
+    ));
+});
+$app->match('/another_match', function(){
+    return new JsonResponse(array(
+        'msg' => 'another match'
+    ));
+})->method('PATCH');
+$app->match('/another_match', function(){
+    return new JsonResponse(array(
+        'msg' => 'another match GET|POST'
+    ));
+})->method('GET|POST');
+// $app->mount('/blog', new BlogControllerProvider());
 
 // organizing controller
 $blog = $app['controllers_factory'];

@@ -8,6 +8,7 @@ use Silex\Provider\HttpFragmentServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+// use Lcp\BlogControllerProvider;
 
 /**
  * @var $app \Silex\Application
@@ -22,7 +23,8 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
 
     return $twig;
 });
-$app->register(new Lcp\BlogControllerProvider());
+
+// $app->register(new BlogControllerProvider());
 
 // Before Application Middleware
 $app->before(function(Request $request, Application $app){
