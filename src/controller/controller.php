@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Silex\Application;
 use Lcp\BlogControllerProvider;
-use Lcp\UserProvider;
+use Lcp\UserControllerProvider;
 
 // Request::setTrustedProxies(array('127.0.0.1'));
 
