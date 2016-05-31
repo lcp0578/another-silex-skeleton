@@ -60,12 +60,12 @@ $app->get('/user/{id}', function($id){
 $userProvider = function($userid){
     return new UserControllerProvider($userid);
 };
-$app->get('/profile/{userid}', function (UserControllerProvider $user){
+$app->get('/profile/{user}', function (UserControllerProvider $user){
     $id = $user->getId();
     return new JsonResponse(array(
         'profile' => $id
     ));
-})->convert('userid', $userProvider);
+})->convert('user', $userProvider);
 
 $app->mount('/blog', new BlogControllerProvider());
 
