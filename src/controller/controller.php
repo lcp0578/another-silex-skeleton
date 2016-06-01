@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Silex\Application;
 use Lcp\BlogControllerProvider;
 use Lcp\UserControllerProvider;
+use Lcp\PostControllerProvider;
 
 // Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -57,8 +58,8 @@ $app->get('/user/{id}', function($id){
     return $id*10;
 });
 
-$userProvider = function($userid){
-    return new UserControllerProvider($userid);
+$userProvider = function($user){
+    return new UserControllerProvider($user);
 };
 $app->get('/profile/{user}', function (UserControllerProvider $user){
     $id = $user->getId();
@@ -66,6 +67,14 @@ $app->get('/profile/{user}', function (UserControllerProvider $user){
         'profile' => $id
     ));
 })->convert('user', $userProvider);
+
+// converters callback
+$callback = function($post, Request $request){
+   return new Post($request->attributes->get('slug'));  
+};
+$app->get('/profile/{id}/{slug}', function(Post $post){
+    return new JsonResponse($post);
+})->convert('post', $callback);
 
 $app->mount('/blog', new BlogControllerProvider());
 
