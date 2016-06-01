@@ -70,10 +70,10 @@ $app->get('/profile/{user}', function (UserControllerProvider $user){
 
 // converters callback
 $callback = function($post, Request $request){
-   return new Post($request->attributes->get('slug'));  
+   return new PostControllerProvider($request->attributes->get('slug'));  
 };
-$app->get('/profile/{id}/{slug}', function(Post $post){
-    return new JsonResponse($post);
+$app->get('/profile/{id}/{slug}', function(PostControllerProvider $post){
+    return new JsonResponse($post->getSlug());
 })->convert('post', $callback);
 
 $app->mount('/blog', new BlogControllerProvider());
