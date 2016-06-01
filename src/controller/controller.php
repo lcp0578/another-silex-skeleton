@@ -8,6 +8,7 @@ use Silex\Application;
 use Lcp\BlogControllerProvider;
 use Lcp\UserControllerProvider;
 use Lcp\PostControllerProvider;
+use LcpModel\UserConverter;
 
 // Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -76,8 +77,13 @@ $app->get('/profile/{id}/{slug}', function(PostControllerProvider $post){
     return new JsonResponse($post->getSlug());
 })->convert('post', $callback);
 
-$app->mount('/blog', new BlogControllerProvider());
-
+// defined as a service
+$app['converter,user'] = function(){
+    return new UserConverter();
+};
+$app->get('/info/{user}', function (User $user){
+    // ...
+})->converter('user', 'converter.user:converter');
 // organizing controller
 $blog = $app['controllers_factory'];
 $blog->get('/', function (){
@@ -89,6 +95,8 @@ $blog->get('/', function(){
     return 'forum homepage';
 });
 
+$app->mount('/blog', new BlogControllerProvider());
+    
 $app->mount('/blog', $blog);
 $app->mount('/forum', $forum);
 //Before Router Middleware

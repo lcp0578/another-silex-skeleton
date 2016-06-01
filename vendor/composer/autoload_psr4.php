@@ -38,4 +38,6 @@ return array(
     'Symfony\\Bridge\\Monolog\\' => array($vendorDir . '/symfony/monolog-bridge'),
     'Silex\\' => array($vendorDir . '/silex/silex/src/Silex'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
+    'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib/Doctrine/Common'),
 );

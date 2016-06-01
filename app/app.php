@@ -23,7 +23,8 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
 
     return $twig;
 });
-
+// Doctrine DBAL
+$app->register(new Silex\Provider\DoctrineServiceProvider());
 // $app->register(new BlogControllerProvider());
 
 // Before Application Middleware
