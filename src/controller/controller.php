@@ -78,12 +78,12 @@ $app->get('/profile/{id}/{slug}', function(PostControllerProvider $post){
 })->convert('post', $callback);
 
 // defined as a service
-$app['converter,user'] = function(){
-    return new UserConverter();
-};
-$app->get('/info/{user}', function (User $user){
-    // ...
-})->converter('user', 'converter.user:converter');
+// $app['converter,user'] = function(){
+//     return new UserConverter();
+// };
+// $app->get('/info/{user}', function (User $user){
+//     // ...
+// })->converter('user', 'converter.user:converter');
 // organizing controller
 $blog = $app['controllers_factory'];
 $blog->get('/', function (){
@@ -127,6 +127,14 @@ $app->get('/blog/{postId}/{commentId}', function($postId, $commentId){
 })
 ->assert('postId', '\d+')
 ->assert('commentId', '\d+');
+// Conditions
+$app->get('/blog/{id}', function($id){
+    return new JsonResponse([
+        'User-Agent' => 'chrome',
+        'id' => $id
+    ]);
+})
+->when("request.headers.get('User-Agent') matchs '/chrome/i'");
 $app->error(function (\Exception $e, Request $request, $code) use($app)
 {
     if ($app['debug']) {
