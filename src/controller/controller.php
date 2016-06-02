@@ -140,6 +140,12 @@ $app->get('/page/{pageName}', function($pageName){
     return new JsonResponse(['pageName' => $pageName]);
 })
 ->value('pageName', 'index');
+// Name Routers
+$app->get('/blog_post/{id}', function($id, Request $request){
+    $routerName = $request;
+    return new JsonResponse($routerName);
+})
+->bind('blog_post_name');
 $app->error(function (\Exception $e, Request $request, $code) use($app)
 {
     if ($app['debug']) {
