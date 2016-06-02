@@ -135,6 +135,11 @@ $app->get('/blog/{id}', function($id){
     ]);
 })
 ->when("request.headers.get('User-Agent') matches '/chrome/i'");
+// Default values
+$app->get('/page/{pageName}', function($pageName){
+    return new JsonResponse(['pageName' => $pageName]);
+})
+->value('pageName', 'index');
 $app->error(function (\Exception $e, Request $request, $code) use($app)
 {
     if ($app['debug']) {
