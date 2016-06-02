@@ -134,7 +134,7 @@ $app->get('/blog/{id}', function($id){
         'id' => $id
     ]);
 })
-->when("request.headers.get('User-Agent') matchs '/chrome/i'");
+->when("request.headers.get('User-Agent') matches '/chrome/i'");
 $app->error(function (\Exception $e, Request $request, $code) use($app)
 {
     if ($app['debug']) {
