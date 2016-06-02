@@ -118,6 +118,15 @@ $app->get('/somewhere', function(){
 ->before($swBefore)
 ->after($swAfter);
 
+// Requirements
+$app->get('/blog/{postId}/{commentId}', function($postId, $commentId){
+    return new JsonResponse([
+        'postId' => $postId,
+        'commentId' => $commentId
+    ]);
+})
+->assert('postId', '\d+')
+->assert('commentId', '\d+');
 $app->error(function (\Exception $e, Request $request, $code) use($app)
 {
     if ($app['debug']) {
