@@ -7,6 +7,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Silex\Application;
 use Lcp\BlogControllerProvider;
 use Lcp\UserControllerProvider;
+use Lcp\PostControllerProvider;
+use LcpModel\UserConverter;
 
 // Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -57,8 +59,8 @@ $app->get('/user/{id}', function($id){
     return $id*10;
 });
 
-$userProvider = function($userid){
-    return new UserControllerProvider($userid);
+$userProvider = function($user){
+    return new UserControllerProvider($user);
 };
 $app->get('/profile/{user}', function (UserControllerProvider $user){
     $id = $user->getId();
@@ -67,8 +69,21 @@ $app->get('/profile/{user}', function (UserControllerProvider $user){
     ));
 })->convert('user', $userProvider);
 
-$app->mount('/blog', new BlogControllerProvider());
+// converters callback
+$callback = function($post, Request $request){
+   return new PostControllerProvider($request->attributes->get('slug'));  
+};
+$app->get('/profile/{id}/{slug}', function(PostControllerProvider $post){
+    return new JsonResponse($post->getSlug());
+})->convert('post', $callback);
 
+// defined as a service
+// $app['converter,user'] = function(){
+//     return new UserConverter();
+// };
+// $app->get('/info/{user}', function (User $user){
+//     // ...
+// })->converter('user', 'converter.user:converter');
 // organizing controller
 $blog = $app['controllers_factory'];
 $blog->get('/', function (){
@@ -80,6 +95,8 @@ $blog->get('/', function(){
     return 'forum homepage';
 });
 
+$app->mount('/blog', new BlogControllerProvider());
+    
 $app->mount('/blog', $blog);
 $app->mount('/forum', $forum);
 //Before Router Middleware
@@ -101,6 +118,34 @@ $app->get('/somewhere', function(){
 ->before($swBefore)
 ->after($swAfter);
 
+// Requirements
+$app->get('/blog/{postId}/{commentId}', function($postId, $commentId){
+    return new JsonResponse([
+        'postId' => $postId,
+        'commentId' => $commentId
+    ]);
+})
+->assert('postId', '\d+')
+->assert('commentId', '\d+');
+// Conditions, need require symfony/expression-language
+$app->get('/blog/{id}', function($id){
+    return new JsonResponse([
+        'User-Agent' => 'chrome',
+        'id' => $id
+    ]);
+})
+->when("request.headers.get('User-Agent') matches '/chrome/i'");
+// Default values
+$app->get('/page/{pageName}', function($pageName){
+    return new JsonResponse(['pageName' => $pageName]);
+})
+->value('pageName', 'index');
+// Name Routers
+$app->get('/blog_post/{id}', function($id, Request $request){
+    $routerName = $request;
+    return new JsonResponse($routerName);
+})
+->bind('blog_post_name');
 $app->error(function (\Exception $e, Request $request, $code) use($app)
 {
     if ($app['debug']) {
