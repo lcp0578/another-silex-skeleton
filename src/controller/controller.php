@@ -8,7 +8,7 @@ use Silex\Application;
 use Lcp\BlogControllerProvider;
 use Lcp\UserControllerProvider;
 use Lcp\PostControllerProvider;
-use LcpModel\UserConverter;
+// use LcpModel\UserConverter;
 
 // Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -146,6 +146,10 @@ $app->get('/blog_post/{id}', function($id, Request $request){
     return new JsonResponse($routerName);
 })
 ->bind('blog_post_name');
+
+// Controller as Class
+$app->get('/foo', 'Lcp\\Foo::bar');
+
 $app->error(function (\Exception $e, Request $request, $code) use($app)
 {
     if ($app['debug']) {

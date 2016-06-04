@@ -35,6 +35,7 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
             'Symfony\\Component\\Form\\' => 23,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Filesystem\\' => 29,
+            'Symfony\\Component\\ExpressionLanguage\\' => 37,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\DomCrawler\\' => 29,
             'Symfony\\Component\\Debug\\' => 24,
@@ -52,6 +53,11 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
         'M' => 
         array (
             'Monolog\\' => 8,
+        ),
+        'D' => 
+        array (
+            'Doctrine\\Common\\Cache\\' => 22,
+            'Doctrine\\Common\\' => 16,
         ),
     );
 
@@ -128,6 +134,10 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
         array (
             0 => __DIR__ . '/..' . '/symfony/filesystem',
         ),
+        'Symfony\\Component\\ExpressionLanguage\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/expression-language',
+        ),
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
@@ -184,6 +194,14 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Doctrine\\Common\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
+        ),
+        'Doctrine\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -212,6 +230,29 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',
             ),
         ),
+        'D' => 
+        array (
+            'Doctrine\\DBAL\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/dbal/lib',
+            ),
+            'Doctrine\\Common\\Lexer\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
+            ),
+            'Doctrine\\Common\\Inflector\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
+            ),
+            'Doctrine\\Common\\Collections\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/collections/lib',
+            ),
+            'Doctrine\\Common\\Annotations\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/annotations/lib',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -221,6 +262,10 @@ class ComposerStaticInitfaef2721b5ecdb9ca825c51cdfe277b5
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
         'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
         'IntlDateFormatter' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/IntlDateFormatter.php',
+        'Lcp\\BlogControllerProvider' => __DIR__ . '/../..' . '/src/controller/Lcp/BlogControllerProvider.php',
+        'Lcp\\Foo' => __DIR__ . '/../..' . '/src/controller/Lcp/Foo.php',
+        'Lcp\\PostControllerProvider' => __DIR__ . '/../..' . '/src/controller/Lcp/PostControllerProvider.php',
+        'Lcp\\UserControllerProvider' => __DIR__ . '/../..' . '/src/controller/Lcp/UserControllerProvider.php',
         'Locale' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/Locale.php',
         'NumberFormatter' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/NumberFormatter.php',
         'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
