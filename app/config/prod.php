@@ -25,6 +25,7 @@ $app['assets.named_packages'] = [
     ]
 ];
 //[Doctrine DBAL]
+/**
 // $app['db.options'] = [
 //     'driver' => 'pdo_mysql',
 //     'dbname' => 'silex_demo',
@@ -34,6 +35,8 @@ $app['assets.named_packages'] = [
 //     'password' => 'lcp0578',
 //     'charset' => 'utf8mb4',
 // ];
+**/
+
 //[Doctrine DBAL multiple databases]
 $app['dbs.options'] = [
     'mysql_read' => [
@@ -55,3 +58,18 @@ $app['dbs.options'] = [
         'charset' => 'utf8mb4',
     ]
 ];
+
+//[Global Configuration for controllers]
+/**
+ * If a controller setting must be applied to all controllers 
+ * (a converter, a middleware, a requirement, or adefault value)
+ */
+$app['controllers'] 
+->value('id', 1)
+->assert('id', '\d+')
+//->requireHttps()
+->method('GET')
+->convert('id', function ($id){
+    return $id * 10;
+})
+->before(function(){});

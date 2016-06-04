@@ -150,6 +150,10 @@ $app->get('/blog_post/{id}', function($id, Request $request){
 // Controller as Class
 $app->get('/foo', 'Lcp\\Foo::bar');
 
+$app->get('/global/{id}', function ($id){
+    return new JsonResponse(['id' => $id]);
+});
+
 $app->error(function (\Exception $e, Request $request, $code) use($app)
 {
     if ($app['debug']) {
