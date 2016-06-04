@@ -1,5 +1,6 @@
 <?php
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  *
@@ -12,8 +13,11 @@ $app->error(function (\Exception $e, $code) use ($app)
     }
     return new Response('msg:' . $e->getMessage() . '; code=' . $e->getCode());
 }, 4);
-$app->error(function (\Exception $e, $code)
+$app->error(function (\Exception $e, $code) use ($app)
 {
+    if($app['debug'] == true){
+        return ;
+    }
     switch ($code) {
         case '404':
             $msg = 'Not Found';
@@ -27,8 +31,11 @@ $app->error(function (\Exception $e, $code)
 /*
  * The higher this value, the earlier an even listener will be triggered in the chain (defaults to -8)
  */
-$app->error(function (\Exception $e, $code)
+$app->error(function (\Exception $e, $code) use ($app)
 {
+    if($app['debug'] == true){
+        return ;
+    }
     return new Response('Error', 404, [
         'X-Status-Code' => 200
     ]);

@@ -8,6 +8,8 @@ use Silex\Provider\HttpFragmentServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Silex\Provider\SerializerServiceProvider;
 // use Lcp\BlogControllerProvider;
 
 /**
@@ -18,6 +20,7 @@ $app->register(new ServiceControllerServiceProvider());
 $app->register(new AssetServiceProvider());
 $app->register(new TwigServiceProvider());
 $app->register(new HttpFragmentServiceProvider());
+$app->register(new SerializerServiceProvider());
 $app['twig'] = $app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
 
@@ -56,5 +59,22 @@ $app->before(function(Request $request){
     if(strpos($request->getBaseUrl(), 'profile') !== false){
         return new RedirectResponse('/login');
     }
+});
+
+// $app->view(function(array $controllerResult, Request $request) use ($app) {
+//     return $app->json($controllerResult);
+// });
+$app->view(function(array $controllerResult, Request $request) use ($app){
+    $acceptHeader = $request->headers->get('Accept');
+    $bestFormat = $app['negotiator']->getBestFormat($acceptHeader, array('json', 'xml'));
+    
+    if('json' === $bestFormat){
+        return new JsonResponse($controllerResult);
+    }
+    
+    if('xml' === $bestFormat){
+        return $app['serializer.xml']->renderResponse($controllerResult);
+    }
+    return $controllerResult;
 });
 return $app;
