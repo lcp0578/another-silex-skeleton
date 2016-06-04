@@ -18,5 +18,6 @@ Debug::enable();
 
 $app = require __DIR__.'/../app/app.php';
 require __DIR__.'/../app/config/dev.php';
+require __DIR__.'/../src/controller/errorHandlers.php';
 require __DIR__.'/../src/controller/controller.php';
 $app->run();
