@@ -7,6 +7,7 @@ use Silex\Application;
 use Lcp\BlogControllerProvider;
 use Lcp\UserControllerProvider;
 use Lcp\PostControllerProvider;
+use Symfony\Component\HttpKernel\HttpKernel;
 // use LcpModel\UserConverter;
 
 // Request::setTrustedProxies(array('127.0.0.1'));
@@ -173,7 +174,8 @@ $app->get('/blog_post/{id}', function ($id, Request $request)
 })->bind('blog_post_name');
 
 // Controller as Class
-$app->get('/foo', 'Lcp\\Foo::bar');
+$app->get('/foo', 'Lcp\\Foo::bar')
+->bind('lcp_foo');
 
 $app->get('/global/{id}', function ($id)
 {
@@ -181,7 +183,16 @@ $app->get('/global/{id}', function ($id)
         'id' => $id
     ]);
 });
-
+// Redirects
+$app->get('/foo_new', function() use ($app){
+    return $app->redirect('/foo');
+});
+// Forwards
+$app->get('/foo_old', function() use ($app){
+    $subRequest = Request::create('/blog_post/2', 'GET');
+    //$subRequest = Request::create($app['url_generator']->generate('lcp_foo'), 'GET');
+    return $app->handle($subRequest, HttpKernel::SUB_REQUEST);
+});
 $app->get('/view', function ()
 {
     return [
