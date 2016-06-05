@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "67481ef3029a92ac43ff9f1f7695ab10",
-    "content-hash": "00f19ac205bc68e23ae5ddc2c9bab536",
+    "hash": "384058829c3b1a120e5cf385c65cdd6f",
+    "content-hash": "98d20a15c839d69e29e98c7c71dce965",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -475,6 +475,49 @@
                 "parser"
             ],
             "time": "2014-09-09 13:34:57"
+        },
+        {
+            "name": "kphoen/negotiation-service-provider",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/K-Phoen/NegotiationServiceProvider.git",
+                "reference": "fed518ec06a6c7d2d0e95ecd4ce962c36204ee62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/K-Phoen/NegotiationServiceProvider/zipball/fed518ec06a6c7d2d0e95ecd4ce962c36204ee62",
+                "reference": "fed518ec06a6c7d2d0e95ecd4ce962c36204ee62",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "willdurand/negotiation": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7",
+                "silex/silex": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "KPhoen": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kévin Gomez",
+                    "email": "contact@kevingomez.fr",
+                    "homepage": "http://www.kevingomez.fr/"
+                }
+            ],
+            "description": "Negotiation Service Provider for Silex",
+            "abandoned": true,
+            "time": "2014-12-10 12:40:19"
         },
         {
             "name": "monolog/monolog",
@@ -2808,6 +2851,55 @@
                 "templating"
             ],
             "time": "2016-01-25 21:22:18"
+        },
+        {
+            "name": "willdurand/negotiation",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/Negotiation.git",
+                "reference": "2a59f2376557303e3fa91465ab691abb82945edf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/2a59f2376557303e3fa91465ab691abb82945edf",
+                "reference": "2a59f2376557303e3fa91465ab691abb82945edf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Negotiation\\": "src/Negotiation"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com"
+                }
+            ],
+            "description": "Content Negotiation tools for PHP provided as a standalone library.",
+            "homepage": "http://williamdurand.fr/Negotiation/",
+            "keywords": [
+                "accept",
+                "content",
+                "format",
+                "header",
+                "negotiation"
+            ],
+            "time": "2015-10-01 07:42:40"
         }
     ],
     "packages-dev": [],
