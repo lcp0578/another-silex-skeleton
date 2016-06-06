@@ -196,7 +196,8 @@ $app->get('/foo_old', function () use($app)
 });
 // json
 $app->get('/users/{id}', function($id) use ($app){
-    return $app->json(['username' => 'lcp0578', 'id' => $id]);
+    //return $app->json(['username' => 'lcp0578', 'id' => $id]);
+    return $app->json(['username' => 'lcp0578', 'id' => $id], 302);
 });
 $app->get('/view', function ()
 {
