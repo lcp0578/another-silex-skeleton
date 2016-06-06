@@ -199,6 +199,16 @@ $app->get('/users/{id}', function($id) use ($app){
     //return $app->json(['username' => 'lcp0578', 'id' => $id]);
     return $app->json(['username' => 'lcp0578', 'id' => $id], 302);
 });
+// streaming
+$app->get('/images/{file}', function ($file) use ($app){
+    if(file_exists(__DIR__ . '/images/' . $file)){
+        return $app->abort(404, 'The image was not found.');
+    }
+    $stream = function() use($file){
+        readfile(__DIR__ . '/images/' . $file);
+    };
+    return $app->stream($stream, 200, array('Content-Type' => 'image/png'));
+});
 $app->get('/view', function ()
 {
     return [
