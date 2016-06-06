@@ -201,11 +201,11 @@ $app->get('/users/{id}', function($id) use ($app){
 });
 // streaming
 $app->get('/images/{file}', function ($file) use ($app){
-    if(file_exists(__DIR__ . '/images/' . $file)){
+    if(!file_exists(__DIR__ . '/../../web/images/' . $file)){
         return $app->abort(404, 'The image was not found.');
     }
     $stream = function() use($file){
-        readfile(__DIR__ . '/images/' . $file);
+        readfile(__DIR__ . '/../../web/images/' . $file);
     };
     return $app->stream($stream, 200, array('Content-Type' => 'image/png'));
 });
