@@ -174,8 +174,7 @@ $app->get('/blog_post/{id}', function ($id, Request $request)
 })->bind('blog_post_name');
 
 // Controller as Class
-$app->get('/foo', 'Lcp\\Foo::bar')
-->bind('lcp_foo');
+$app->get('/foo', 'Lcp\\Foo::bar')->bind('lcp_foo');
 
 $app->get('/global/{id}', function ($id)
 {
@@ -184,14 +183,20 @@ $app->get('/global/{id}', function ($id)
     ]);
 });
 // Redirects
-$app->get('/foo_new', function() use ($app){
+$app->get('/foo_new', function () use($app)
+{
     return $app->redirect('/foo');
 });
 // Forwards
-$app->get('/foo_old', function() use ($app){
+$app->get('/foo_old', function () use($app)
+{
     $subRequest = Request::create('/blog_post/2', 'GET');
     //$subRequest = Request::create($app['url_generator']->generate('lcp_foo'), 'GET');
     return $app->handle($subRequest, HttpKernel::SUB_REQUEST);
+});
+// json
+$app->get('/users/{id}', function($id) use ($app){
+    return $app->json(['username' => 'lcp0578', 'id' => $id]);
 });
 $app->get('/view', function ()
 {
