@@ -209,6 +209,18 @@ $app->get('/images/{file}', function ($file) use ($app){
     };
     return $app->stream($stream, 200, array('Content-Type' => 'image/png'));
 });
+    $app->get('/baidu', function () use ($app){
+        $stream = function(){
+            $fh = fopen('https://www.baidu.com', 'rb');
+            while(!feof($fh)){
+                echo fread($fh, 1024);
+                ob_flush();
+                flush();
+            }
+            fclose($fh);
+        };
+        return $app->stream($stream, 200, array('Content-Type' => 'text/html'));
+    });
 $app->get('/view', function ()
 {
     return [
