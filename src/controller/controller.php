@@ -8,6 +8,7 @@ use Lcp\BlogControllerProvider;
 use Lcp\UserControllerProvider;
 use Lcp\PostControllerProvider;
 use Symfony\Component\HttpKernel\HttpKernel;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 // use LcpModel\UserConverter;
 
 // Request::setTrustedProxies(array('127.0.0.1'));
@@ -239,10 +240,13 @@ $app->get('/view', function ()
     ];
 });
 // sending a file
+//enable the php_fileinfo extension
 $app->get('/files/{path}', function($path) use ($app){
     $filePath = dirname(__DIR__).'/files/' . $path;
     if(!file_exists($filePath)){
         $app->abort(404, 'file not found');
     }
-    return $app->sendFile($filePath);
+    //return $app->sendFile($filePath);
+    return $app->sendFile($filePath)
+        ->setContent(ResponseHeaderBag::DISPOSITION_ATTACHMENT, 'pic.png');
 });
