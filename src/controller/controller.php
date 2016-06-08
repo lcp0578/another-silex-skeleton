@@ -191,28 +191,38 @@ $app->get('/foo_new', function () use($app)
 $app->get('/foo_old', function () use($app)
 {
     $subRequest = Request::create('/blog_post/2', 'GET');
-    //$subRequest = Request::create($app['url_generator']->generate('lcp_foo'), 'GET');
+    // $subRequest = Request::create($app['url_generator']->generate('lcp_foo'), 'GET');
     return $app->handle($subRequest, HttpKernel::SUB_REQUEST);
 });
 // json
-$app->get('/users/{id}', function($id) use ($app){
-    //return $app->json(['username' => 'lcp0578', 'id' => $id]);
-    return $app->json(['username' => 'lcp0578', 'id' => $id], 302);
+$app->get('/users/{id}', function ($id) use($app)
+{
+    // return $app->json(['username' => 'lcp0578', 'id' => $id]);
+    return $app->json([
+        'username' => 'lcp0578',
+        'id' => $id
+    ], 302);
 });
 // streaming
-$app->get('/images/{file}', function ($file) use ($app){
-    if(!file_exists(__DIR__ . '/../../web/images/' . $file)){
+$app->get('/images/{file}', function ($file) use($app)
+{
+    if (! file_exists(__DIR__ . '/../../web/images/' . $file)) {
         return $app->abort(404, 'The image was not found.');
     }
-    $stream = function() use($file){
+    $stream = function () use($file)
+    {
         readfile(__DIR__ . '/../../web/images/' . $file);
     };
-    return $app->stream($stream, 200, array('Content-Type' => 'image/png'));
+    return $app->stream($stream, 200, array(
+        'Content-Type' => 'image/png'
+    ));
 });
-    $app->get('/baidu', function () use ($app){
-        $stream = function(){
-            $fh = fopen('https://www.baidu.com', 'rb');
-            while(!feof($fh)){
+$app->get('/baidu', function () use($app)
+{
+    $stream = function ()
+    {
+        $fh = fopen('https://www.baidu.com', 'rb');
+        while (! feof($fh)) {
                 echo fread($fh, 1024);
                 ob_flush();
                 flush();
@@ -227,4 +237,12 @@ $app->get('/view', function ()
         'a' => 1,
         'b' => 2
     ];
+});
+// sending a file
+$app->get('/files/{path}', function($path) use ($app){
+    $filePath = dirname(__DIR__).'/files/' . $path;
+    if(!file_exists($filePath)){
+        $app->abort(404, 'file not found');
+    }
+    return $app->sendFile($filePath);
 });
