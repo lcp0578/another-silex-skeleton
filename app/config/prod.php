@@ -58,7 +58,8 @@ $app['dbs.options'] = [
         'charset' => 'utf8mb4',
     ]
 ];
-
+// Parameters
+$app['assets.host'] = 'http://cnd.lcpeng.cn';
 //[Global Configuration for controllers]
 /**
  * If a controller setting must be applied to all controllers 
