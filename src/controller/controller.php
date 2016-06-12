@@ -21,6 +21,7 @@ $app->get('/', function () use($app)
     ));
 })
     ->bind('homepage');
+$app->mount('/blog', include 'blog.php');
 // other methods
 $app->put('/blog/{id}', function ($id)
 {
