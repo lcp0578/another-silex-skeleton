@@ -10,7 +10,7 @@ use Lcp\PostControllerProvider;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 // use LcpModel\UserConverter;
-
+include 'organizing.php';
 // Request::setTrustedProxies(array('127.0.0.1'));
 
 $app->get('/', function () use($app)
