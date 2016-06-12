@@ -11,3 +11,12 @@
 $app['lcp_service'] = function(){
     return new Service();
 };
+// access container from closure
+$app['some_service'] = function(){
+    return new Service($app['some_other_service'], $app['some_service.config']);
+};
+
+$app['user.persist_path'] = '/temp/users';
+$app['user.persister'] = function($app){
+    return new JsonUserPersister($app['user.persist_path']);
+};
