@@ -250,3 +250,13 @@ $app->get('/files/{path}', function($path) use ($app){
     return $app->sendFile($filePath)
         ->setContent(ResponseHeaderBag::DISPOSITION_ATTACHMENT, 'pic.png');
 });
+// Escaping
+$app->get('/name', function(Application $app){
+    $name = $app['request']->get('name');
+    return "You provided the name {$app->escape($name)}";
+});
+// Escaping JSON
+$app->get('/name.json', function(Application $app){
+    $name = $app['request']->get('name');
+    return $app->json(array('json' => $name));
+});
