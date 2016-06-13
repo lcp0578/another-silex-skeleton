@@ -29,15 +29,3 @@ $app['closure_parameter'] = $app->protect(function($a, $b){
 });
 
 echo $add(2, 3);
-// Core services
-$requestStack = $app['request_stack'];
-/**
- * @var $requestStack  \Symfony\Component\HttpFoundation\RequestStack
- */ 
-$id = $requestStack->getCurrentRequest()->get('id');
-/**
- * @var $routes \Symfony\Component\Routing\RouteCollection
- */ 
-$routes = $app['routes'];
-$routes->setCondition($condition);
-
