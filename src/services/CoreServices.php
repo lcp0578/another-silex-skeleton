@@ -56,3 +56,14 @@ $kernel->handle($request);
 $requestContent = $app['request_content'];
 $requestContent->fromRequest($request);
 
+/**
+ * @var $exceptionHandler \Silex\ExceptionHandler
+ */
+$exceptionHandler = $app['exception_handler'];
+$exceptionHandler->onSilexError($event);
+
+/**
+ * @var $logger \Psr\Log\LoggerInterface
+ */
+$logger = $app['logger'];
+$logger->debug($message);
