@@ -20,3 +20,12 @@ $app['user.persist_path'] = '/temp/users';
 $app['user.persister'] = function($app){
     return new JsonUserPersister($app['user.persist_path']);
 };
+// Protected closures
+/**
+ * @var $app \Silex\Application
+ */
+$app['closure_parameter'] = $app->protect(function($a, $b){
+    return $a + $b;
+});
+
+echo $add(2, 3);
