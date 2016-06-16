@@ -9,3 +9,6 @@
   * @copyright: http://lcpeng.cn
   */
 $app['request.http_port'] = 8080; // default 80
+$app['request.https_port'] = 445; // default 443
+$app['debug'] = true; // default false
+$app['charset'] = 'UTF-8'; // default UTF-8
