@@ -12,7 +12,15 @@
  */
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\FormServiceProvider;
+use Silex\Provider\HttpCacheServiceProvider;
+use Silex\Provider\MonologServiceProvider;
+use Silex\Provider\RememberMeServiceProvider;
+use Silex\Provider\SecurityServiceProvider;
 
 $app = new Silex\Application();
 $app->register(new DoctrineServiceProvider());
 $app->register(new FormServiceProvider());
+$app->register(new HttpCacheServiceProvider());
+$app->register(new MonologServiceProvider());
+$app->register(new RememberMeServiceProvider());
+$app->register(new SecurityServiceProvider());
