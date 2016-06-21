@@ -119,6 +119,7 @@ $app->mount('/blog', new BlogControllerProvider());
 
 $app->mount('/blog', $blog);
 $app->mount('/forum', $forum);
+$app->mount('/lcp_hello', new Lcp\helloControllerProvider());
 // Before Router Middleware
 $swBefore = function (Request $request, Application $app)
 {
