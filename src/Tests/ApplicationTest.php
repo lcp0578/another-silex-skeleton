@@ -20,6 +20,6 @@ class ApplicationTest extends WebTestCase
     
     public function createApplication()
     {
-        
+        return require dirname(__FILE__) . '../../app/app.php';
     }
 }
