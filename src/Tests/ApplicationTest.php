@@ -20,6 +20,10 @@ class ApplicationTest extends WebTestCase
     
     public function createApplication()
     {
-        return require dirname(__FILE__) . '../../app/app.php';
+        $app = require __DIR__ . '../../app/app.php';
+        $app['debug'] = true;
+        unset($app['exception_handler']);
+        
+        return $app;
     }
 }
