@@ -23,6 +23,8 @@ class ApplicationTest extends WebTestCase
         $app = require __DIR__ . '../../app/app.php';
         $app['debug'] = true;
         unset($app['exception_handler']);
+        // test session
+        $app['session.test'] = true;
         
         return $app;
     }
