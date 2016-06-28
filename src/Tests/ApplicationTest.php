@@ -33,6 +33,8 @@ class ApplicationTest extends WebTestCase
         $client = $this->createClient();
         $crawer = $client->request('GET', '/');
         
-        
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertCount(1, $crawer->filter('h1:contains("Contact us")'));
+        $this->asserCount(1, $crawer->filter('form'));
     }
 }
