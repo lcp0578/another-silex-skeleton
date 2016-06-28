@@ -28,4 +28,11 @@ class ApplicationTest extends WebTestCase
         
         return $app;
     }
+    public function testIntialPage()
+    {
+        $client = $this->createClient();
+        $crawer = $client->request('GET', '/');
+        
+        
+    }
 }
