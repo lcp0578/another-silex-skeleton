@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Silex\Provider\SerializerServiceProvider;
+use Silex\Provider\SessionServiceProvider;
 // use KPhoen\Provider\NegotiationServiceProvider;
 // use Lcp\BlogControllerProvider;
 
@@ -22,6 +23,7 @@ $app->register(new AssetServiceProvider());
 $app->register(new TwigServiceProvider());
 $app->register(new HttpFragmentServiceProvider());
 $app->register(new SerializerServiceProvider());
+$app->register(new SessionServiceProvider());
 // $app->register(new NegotiationServiceProvider(array(
 //     'gpx' => array('application/gpx+xml'),
 //     'kml' => array('application/vnd.google-earth.kml+xml', 'application/vnd.google-earth.kmz'),
