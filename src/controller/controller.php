@@ -263,6 +263,6 @@ $app->get('/name.json', function(Application $app){
     return $app->json(array('json' => $name));
 });
 // disabling CSRF protection on a form
-$form = $app['form_factory']->createBulider('form', null, array(
+$form = $app['form.factory']->createBulider('form', null, array(
     'csrf_protection' => false
 ));
