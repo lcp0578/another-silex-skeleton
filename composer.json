@@ -19,12 +19,19 @@
         "symfony/validator": "~2.8|3.0.*",
         "symfony/http-kernel": "^2.8",
         "doctrine/dbal": "~2.2",
-        "symfony/expression-language": "^3.1"
+        "symfony/expression-language": "^3.1",
+        "knplabs/console-service-provider": "2.x"
     },
     "autoload": {
         "classmap": [
             "src/controller",
             "src/Provider"
         ]
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
 }
