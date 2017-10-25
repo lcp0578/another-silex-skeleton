@@ -28,14 +28,14 @@ $app->register(new HttpFragmentServiceProvider());
 $app->register(new SerializerServiceProvider());
 $app->register(new SessionServiceProvider());
 $app->register(new ValidatorServiceProvider());
-$app->register(new TranslationServiceProvider());
+//$app->register(new TranslationServiceProvider());
 $app->register(new FormServiceProvider());
-$app->extend('translator.resources', function ($resource, $app){
-    $resource = array_merge($resource, array(
-        array()
-    ));
-    return $resource;
-});
+// $app->extend('translator.resources', function ($resource, $app){
+//     $resource = array_merge($resource, array(
+//         array()
+//     ));
+//     return $resource;
+// });
 // $app->register(new NegotiationServiceProvider(array(
 //     'gpx' => array('application/gpx+xml'),
 //     'kml' => array('application/vnd.google-earth.kml+xml', 'application/vnd.google-earth.kmz'),
